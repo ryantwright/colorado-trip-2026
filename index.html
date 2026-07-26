@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colorado, July 28 to August 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F5F1;
+    --card:#FFFFFF;
+    --ink:#23282E;
+    --muted:#6C737C;
+    --blue:#24466E;
+    --gold:#DFA32B;
+    --red:#B5482E;
+    --line:#D8DBD4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans',system-ui,sans-serif;
+    font-size:15px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:40px 20px 64px}
+
+  /* Hero */
+  .hero{padding:8px 4px 28px;border-bottom:3px solid var(--ink)}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--red);
+  }
+  .hero h1{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;font-size:clamp(56px,11vw,104px);
+    line-height:.92;letter-spacing:.01em;text-transform:uppercase;
+    margin:6px 0 10px;color:var(--blue);
+  }
+  .hero .dates{
+    font-family:'Big Shoulders Display',sans-serif;font-weight:700;
+    font-size:clamp(18px,3vw,24px);text-transform:uppercase;letter-spacing:.06em;
+  }
+  .hero .sub{color:var(--muted);margin-top:8px;max-width:56ch}
+
+  /* Facts */
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0 12px}
+  .fact{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--blue);padding:14px 16px}
+  .fact:nth-child(2){border-top-color:var(--gold)}
+  .fact:nth-child(3){border-top-color:var(--red)}
+  .fact h3{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;
+  }
+  .fact p{font-size:14px}
+  .fact strong{font-weight:700}
+
+  /* Checklist */
+  .todo{background:var(--blue);color:#F2F5F9;padding:16px 18px;margin:12px 0 36px}
+  .todo h3{
+    font-family:'Big Shoulders Display',sans-serif;font-weight:700;font-size:20px;
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;color:var(--gold);
+  }
+  .todo ul{list-style:none}
+  .todo li{padding:3px 0 3px 22px;position:relative;font-size:14px}
+  .todo li::before{
+    content:"";position:absolute;left:2px;top:9px;width:9px;height:9px;
+    border:2px solid var(--gold);
+  }
+
+  /* Day cards */
+  .day{background:var(--card);border:1px solid var(--line);margin-bottom:22px;break-inside:avoid}
+  .dayhead{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    padding:16px 20px 12px;border-bottom:2px solid var(--ink);
+  }
+  .dayhead .dname{
+    font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+    font-size:clamp(28px,5vw,40px);text-transform:uppercase;line-height:1;color:var(--blue);
+  }
+  .dayhead .ddate{
+    font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:13px;
+    letter-spacing:.08em;text-transform:uppercase;
+  }
+  .dayhead .dtag{
+    margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--red);
+  }
+  .rows{padding:10px 20px 18px;position:relative}
+  .rows::before{
+    content:"";position:absolute;top:14px;bottom:20px;left:118px;width:2px;background:var(--line);
+  }
+  .row{display:flex;gap:0;padding:7px 0;position:relative;align-items:flex-start}
+  .row .t{
+    width:86px;flex:0 0 86px;font-family:'IBM Plex Mono',monospace;
+    font-weight:600;font-size:12.5px;color:var(--muted);padding-top:2px;text-align:right;
+  }
+  .row .dot{
+    flex:0 0 auto;width:10px;height:10px;border-radius:50%;
+    background:var(--blue);margin:6px 20px 0 27px;position:relative;z-index:1;
+  }
+  .row .what{flex:1;min-width:0}
+  .row .what strong{font-weight:700}
+  .row .what .note{color:var(--muted);font-size:13.5px}
+
+  /* Game rows: the frisbee ring */
+  .row.game .dot{
+    width:16px;height:16px;background:var(--card);
+    border:4px solid var(--gold);margin:3px 17px 0 24px;
+  }
+  .row.game{background:#FBF4E3;margin:0 -20px;padding:9px 20px}
+  .row.game .what strong{color:var(--blue);text-transform:uppercase;letter-spacing:.02em}
+  .row.game .t{color:var(--ink)}
+
+  /* Meal + travel markers */
+  .row.meal .dot{background:var(--red)}
+  .row.travel .dot{background:var(--ink)}
+  .chip{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--red);color:var(--red);
+    padding:1px 6px;margin-right:7px;vertical-align:1px;
+  }
+  .chip.fly{border-color:var(--ink);color:var(--ink)}
+
+  .fill{
+    background:#FDECEC;border:1px dashed var(--red);color:var(--red);
+    font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;padding:1px 6px;
+  }
+
+  footer{margin-top:8px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+
+  @media (max-width:640px){
+    .facts{grid-template-columns:1fr}
+    .rows::before{left:96px}
+    .row .t{width:68px;flex-basis:68px;font-size:11.5px}
+    .row .dot{margin-left:23px}
+    .row.game .dot{margin-left:20px}
+    .dayhead .dtag{margin-left:0;width:100%}
+  }
+  @media print{
+    body{background:#fff}
+    .wrap{padding:0}
+    .day{border-color:#bbb}
+    .todo{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .row.game{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Wright family trip plan</div>
+    <h1>Colorado</h1>
+    <div class="dates">Tuesday, July 28 to Tuesday, August 4, 2026</div>
+    <p class="sub">YCC Nationals in Aurora, the Georgetown Loop, the Poudre River and a Denver day. Vanguard plays Saturday through Monday.</p>
+  </header>
+
+  <section class="facts">
+    <div class="fact">
+      <h3>Fort Collins &middot; Tue to Fri</h3>
+      <p><strong>Residence Inn by Marriott</strong><br>1127 Oakridge Drive, (970) 223-5700. Two rooms booked. Hot breakfast included. Pool on site.</p>
+    </div>
+    <div class="fact">
+      <h3>Gateway Park &middot; Fri to Tue</h3>
+      <p><strong>TownePlace Suites Denver Airport at Gateway Park</strong><br>4100 N. Kittredge St., (303) 373-4243. Two rooms on your booking, breakfast included. Avery is with the team at the Hyatt Place, 16250 E. 40th Ave. Grandma and Grandpa are at the Hampton Inn Aurora South.</p>
+    </div>
+    <div class="fact">
+      <h3>Tournament</h3>
+      <p><strong>Aurora Sports Park</strong><br>19300 E. Colfax Ave., Aurora. Both Saturday games on Field 53. Spectator admission is pay what you can, $15, $25 or $35. Pay online before arriving.</p>
+    </div>
+  </section>
+
+  <section class="todo">
+    <h3>Before you go</h3>
+    <ul>
+      <li>Check everyone in on the Delta app 24 hours out. All five travelers are on one confirmation.</li>
+      <li>Bob's TripIt has them at the Hampton, so decide if you still need the second TownePlace room. Free cancellation ends Wednesday night, July 29.</li>
+      <li>Georgetown Loop is set: 11:25 out, back at 2:15. Check in by 10:45 at Devil's Gate Station.</li>
+      <li>Order Wednesday's burgers from Big Al's for pickup on the drive to Wellington.</li>
+      <li>Buy Meow Wolf timed tickets for the grandparents and boys' outing.</li>
+      <li>Pay the tournament spectator fee online.</li>
+    </ul>
+  </section>
+
+  <section class="todo">
+    <h3>Grandma and Grandpa's track, in from Victoria, B.C.</h3>
+    <ul>
+      <li><strong>Monday, July 27.</strong> AC 8158 out of Victoria at 2:55, through Vancouver, AC 578 lands Denver at 11:12 PM. Avis pickup at 11:30, night at the City Express by Marriott Denver Airport, 6670 Yampa St.</li>
+      <li><strong>Tuesday.</strong> Check out by 11, drive up to Marcy's in Wellington. They stay there through Thursday night.</li>
+      <li><strong>Friday.</strong> Check in at the Hampton Inn and Suites Aurora South, 2525 S. Anaheim St., 3:00 PM. Their own booking, their own car all week.</li>
+      <li><strong>Tuesday, August 4.</strong> Avis back at 7:00 AM, AC 575 to Vancouver at 9:10, home in Victoria by 5:06 PM.</li>
+    </ul>
+  </section>
+
+  <!-- TUESDAY JULY 28 -->
+  <article class="day">
+    <div class="dayhead">
+      <span class="dname">Tuesday</span>
+      <span class="ddate">July 28</span>
+      <span class="dtag">Travel day &middot; CHO to Fort Collins</span>
+    </div>
+    <div class="rows">
+      <div class="row"><span class="t">12:45 PM</span><span class="dot"></span><div class="what">Leave for CHO. Small airport, but give yourselves room to park.</div></div>
+      <div class="row travel"><span class="t">2:32 PM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 5391, CHO to LGA.</strong> Gate 4. Lands 4:07 PM.</div></div>
+      <div class="row meal"><span class="t">4:30 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span>Eat a real dinner at LGA during the 2:43 layover. Terminal C has plenty of options. This is tonight's meal.</div></div>
+      <div class="row travel"><span class="t">6:50 PM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 710, LGA to DEN.</strong> Terminal C, Gate 68. Lands 9:35 PM MDT.</div></div>
+      <div class="row"><span class="t">9:50 PM</span><span class="dot"></span><div class="what"><strong>Hertz,</strong> 24890 E. 78th Ave. Nissan Pathfinder or similar, the 7-seater.</div></div>
+      <div class="row"><span class="t">10:30 PM</span><span class="dot"></span><div class="what">Drive north to Fort Collins on E-470 and I-25. About 70 minutes.</div></div>
+      <div class="row"><span class="t">11:45 PM</span><span class="dot"></span><div class="what">Check in at the <strong>Residence Inn,</strong> 1127 Oakridge Drive. Both rooms are under your name, everyone under one roof tonight. Straight to bed, tomorrow is the train.</div></div>
+    </div>
+  </article>
+
+  <!-- WEDNESDAY JULY 29 -->
+  <article class="day">
+    <div class="dayhead">
+      <span class="dname">Wednesday</span>
+      <span class="ddate">July 29</span>
+      <span class="dtag">Georgetown Loop Railroad</span>
+    </div>
+    <div class="rows">
+      <div class="row meal"><span class="t">7:00 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span>At the hotel. Eat well, it is a mountain day.</div></div>
+      <div class="row travel"><span class="t">8:45 AM</span><span class="dot"></span><div class="what">Out the door. Drive to Georgetown, about 2 hours, I-25 south then I-70 west into the mountains.</div></div>
+      <div class="row"><span class="t">10:45 AM</span><span class="dot"></span><div class="what">Arrive at <strong>Devil's Gate Station,</strong> 646 Loop Dr. Check in, then grab snacks and water for the ride. Bring layers, Georgetown sits at 8,500 feet.</div></div>
+      <div class="row game"><span class="t">11:25 AM</span><span class="dot"></span><div class="what"><strong>Georgetown Loop departs, with the extended mine tour.</strong> Over the Devil's Gate High Bridge, then into the Lebanon Mine. The mine holds in the 40s, so keep those layers handy.</div></div>
+      <div class="row"><span class="t">2:15 PM</span><span class="dot"></span><div class="what">Back at the station. Quick stretch, quick look at Miner Street if anyone wants it.</div></div>
+      <div class="row travel"><span class="t">2:30 PM</span><span class="dot"></span><div class="what">Drive back north, about 2 hours. Keep snacking light, burgers are coming.</div></div>
+      <div class="row"><span class="t">4:45 PM</span><span class="dot"></span><div class="what">Pick up the burger order at <strong>Big Al's,</strong> Old Town Fort Collins. Call it in from the road.</div></div>
+      <div class="row meal"><span class="t">5:30 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span><strong>Marcy's house, Wellington.</strong> Burgers and birthday cake, 20 minutes north on I-25.</div></div>
+      <div class="row"><span class="t">8:30 PM</span><span class="dot"></span><div class="what">Back to the hotel, minus one. <strong>Avery stays at Marcy's with Grandma and Grandpa,</strong> who are there through Thursday night.</div></div>
+    </div>
+  </article>
+
+  <!-- THURSDAY JULY 30 -->
+  <article class="day">
+    <div class="dayhead">
+      <span class="dname">Thursday</span>
+      <span class="ddate">July 30</span>
+      <span class="dtag">Fort Fun and Marcy's</span>
+    </div>
+    <div class="rows">
+      <div class="row meal"><span class="t">8:00 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span><strong>Silver Grill Cafe,</strong> 218 Walnut St. No reservations, just show up. Get the giant cinnamon roll.</div></div>
+      <div class="row game"><span class="t">10:00 AM</span><span class="dot"></span><div class="what"><strong>Fort Fun,</strong> 1513 E. Mulberry St. Doors open at 10. Go-karts, bumper boats, mini golf, laser tag and the arcade. The boys run the morning.</div></div>
+      <div class="row meal"><span class="t">12:15 PM</span><span class="dot"></span><div class="what"><span class="chip">Lunch</span>Sandwiches at <strong>Choice City,</strong> 104 W. Olive St., the best sandwich in town, opens at 11. Or just eat at Fort Fun if nobody wants to leave.</div></div>
+      <div class="row"><span class="t">1:15 PM</span><span class="dot"></span><div class="what">Maybe: a dip in the Poudre, weather and water level permitting. Decide that day between the <strong>Whitewater Park</strong> off N. College, five minutes away, or <strong>Picnic Rock</strong> up the canyon, twenty minutes and prettier. Suits and towels in the car.</div></div>
+      <div class="row"><span class="t">2:30 PM</span><span class="dot"></span><div class="what">Afternoon at <strong>Marcy's place in Wellington.</strong> Nothing scheduled, that is the point.</div></div>
+      <div class="row meal"><span class="t">6:00 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span><strong>Blue Agave Grill,</strong> 201 S. College Ave. Reservation confirmed, table for 9 at 6:00, Marcy and Kenny included. Twenty minutes back down from Wellington.</div></div>
+      <div class="row"><span class="t">8:00 PM</span><span class="dot"></span><div class="what">Pack tonight, checkout is in the morning. Avery stays at Marcy's with the grandparents again, you grab her on the way south tomorrow.</div></div>
+    </div>
+  </article>
+
+  <!-- FRIDAY JULY 31 -->
+  <article class="day">
+    <div class="dayhead">
+      <span class="dname">Friday</span>
+      <span class="ddate">July 31</span>
+      <span class="dtag">South to Denver &middot; Join the team</span>
+    </div>
+    <div class="rows">
+      <div class="row meal"><span class="t">8:00 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span>At the hotel. Slow morning, pack the Pathfinder, last swim if the boys want it.</div></div>
+      <div class="row"><span class="t">11:00 AM</span><span class="dot"></span><div class="what">Check out.</div></div>
+      <div class="row travel"><span class="t">11:15 AM</span><span class="dot"></span><div class="what">Up to <strong>Marcy's in Wellington</strong> to pick up Avery, about 25 minutes.</div></div>
+      <div class="row travel"><span class="t">11:50 AM</span><span class="dot"></span><div class="what">Hit the road south on I-25.</div></div>
+      <div class="row meal"><span class="t">12:30 PM</span><span class="dot"></span><div class="what"><span class="chip">Lunch</span><strong>Buc-ee's, Berthoud.</strong> Right off I-25. Brisket sandwiches, Beaver Nuggets and the cleanest bathrooms in America.</div></div>
+      <div class="row travel"><span class="t">1:15 PM</span><span class="dot"></span><div class="what">Continue to Denver, about 50 minutes.</div></div>
+      <div class="row"><span class="t">2:15 PM</span><span class="dot"></span><div class="what"><strong>Union Station.</strong> Tattered Cover books, Milkbox ice cream, the great hall.</div></div>
+      <div class="row travel"><span class="t">3:15 PM</span><span class="dot"></span><div class="what">Drive to Gateway Park. About 20 minutes.</div></div>
+      <div class="row"><span class="t">3:45 PM</span><span class="dot"></span><div class="what">Check in at the <strong>TownePlace Suites Denver Airport at Gateway Park,</strong> 4100 N. Kittredge St. Both rooms are on one confirmation.</div></div>
+      <div class="row"><span class="t">&mdash;</span><span class="dot"></span><div class="what"><strong>Grandma and Grandpa check in at the Hampton Inn Aurora South,</strong> 2525 S. Anaheim St., their own booking, fifteen minutes south of you.</div></div>
+      <div class="row"><span class="t">5:30 PM</span><span class="dot"></span><div class="what">Optional: BIPOC game at the bowl field, Aurora Sports Park.</div></div>
+      <div class="row"><span class="t">6:00 PM</span><span class="dot"></span><div class="what">Team arrives at the <strong>Hyatt Place,</strong> five minutes away. Drop Avery and her gear, she rooms with Bird and Grace. Throw around, team dinner and meeting.</div></div>
+      <div class="row meal"><span class="t">6:30 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span>Everyone but Avery: <strong>Stanley Marketplace,</strong> ten minutes away. Food hall in an old aviation factory, something for the boys and the grandparents alike.</div></div>
+    </div>
+  </article>
+
+  <!-- SATURDAY AUG 1 -->
+  <article class="day">
+    <div class="dayhead">
+      <span class="dname">Saturday</span>
+      <span class="ddate">August 1</span>
+      <span class="dtag">Pool play &middot; Two games</span>
+    </div>
+    <div class="rows">
+      <div class="row meal"><span class="t">7:30 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span>At the TownePlace, it is included. Avery eats with the team at the Hyatt.</div></div>
+      <div class="row travel"><span class="t">9:30 AM</span><span class="dot"></span><div class="what">Head to Aurora Sports Park, about 15 minutes. Chairs, sunscreen, water, hats. Show your spectator pass.</div></div>
+      <div class="row game"><span class="t">10:45 AM</span><span class="dot"></span><div class="what"><strong>Vanguard vs. LA Sky,</strong> Field 53.</div></div>
+      <div class="row meal"><span class="t">12:15 PM</span><span class="dot"></span><div class="what"><span class="chip">Lunch</span>Liz and Ryan eat at the fields between games, Avery is covered by the team. The grandparents and boys grab lunch out on their own adventure.</div></div>
+      <div class="row game"><span class="t">1:30 PM</span><span class="dot"></span><div class="what"><strong>Vanguard vs. KOI,</strong> Field 53.</div></div>
+      <div class="row"><span class="t">3:30 PM</span><span class="dot"></span><div class="what">Players: tournament dinner at the fields until 6:15, GUM Ball social 3:30 to 5:30.</div></div>
+      <div class="row meal"><span class="t">6:30 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span>The crew of six at <strong>Torchy's Tacos, Northfield,</strong> 8281 E. Northfield Blvd. Ten minutes from the hotel, tacos and queso, no reservation needed.</div></div>
+      <div class="row"><span class="t">8:00 PM</span><span class="dot"></span><div class="what">Avery has the team meeting at the Hyatt, then early lights out. Sunday starts at dawn.</div></div>
+    </div>
+  </article>
+
+  <!-- SUNDAY AUG 2 -->
+  <article class="day">
+    <div class="dayhead">
+      <span class="dname">Sunday</span>
+      <span class="ddate">August 2</span>
+      <span class="dtag">Bracket day</span>
+    </div>
+    <div class="rows">
+      <div class="row meal"><span class="t">6:45 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span>Avery's team breakfast at the Hyatt. The rest of you, hit the early spread at the TownePlace.</div></div>
+      <div class="row travel"><span class="t">7:15 AM</span><span class="dot"></span><div class="what">Team cars load for the fields. Family rolls out by 7:50.</div></div>
+      <div class="row"><span class="t">&mdash;</span><span class="dot"></span><div class="what"><strong>Aunt Marcy drives down</strong> to watch today. Have her meet you at Aurora Sports Park.</div></div>
+      <div class="row game"><span class="t">8:30 AM</span><span class="dot"></span><div class="what"><strong>Crossover / play-in game.</strong></div></div>
+      <div class="row game"><span class="t">10:45 AM</span><span class="dot"></span><div class="what"><strong>Bracket game.</strong></div></div>
+      <div class="row meal"><span class="t">12:15 PM</span><span class="dot"></span><div class="what"><span class="chip">Lunch</span>Liz and Ryan at the fields, Avery is covered by the parent crew. The grandparents and boys eat wherever the morning took them.</div></div>
+      <div class="row game"><span class="t">1:30 PM</span><span class="dot"></span><div class="what"><strong>Semifinal,</strong> first window, if they win through. Second window is 3:45.</div></div>
+      <div class="row"><span class="t">&mdash;</span><span class="dot"></span><div class="what">Between games, catch US Open club action at Aurora. Vanguard stays here, only Vortex plays at Dick's today.</div></div>
+      <div class="row meal"><span class="t">6:00 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span>Avery eats at the Hyatt with the team, then team meeting. The crew of six: <strong>FlyteCo Tower,</strong> the old Stapleton control tower, ten minutes. Burgers, mini golf and duckpin for the boys.</div></div>
+    </div>
+  </article>
+
+  <!-- MONDAY AUG 3 -->
+  <article class="day">
+    <div class="dayhead">
+      <span class="dname">Monday</span>
+      <span class="ddate">August 3</span>
+      <span class="dtag">Championship Monday</span>
+    </div>
+    <div class="rows">
+      <div class="row meal"><span class="t">7:30 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span>At the hotel.</div></div>
+      <div class="row"><span class="t">8:30 AM</span><span class="dot"></span><div class="what">Optional: U20 Open final. Good watching, and jersey trading happens around it.</div></div>
+      <div class="row game"><span class="t">11:00 AM</span><span class="dot"></span><div class="what"><strong>U20 Mixed Championship.</strong> This is the one.</div></div>
+      <div class="row meal"><span class="t">12:45 PM</span><span class="dot"></span><div class="what"><span class="chip">Lunch</span>Celebrate at the fields or grab something at Stanley.</div></div>
+      <div class="row"><span class="t">1:30 PM</span><span class="dot"></span><div class="what">U20 Women's final if the crew wants one more game.</div></div>
+      <div class="row"><span class="t">3:30 PM</span><span class="dot"></span><div class="what">Pool, rest and packing at the hotel.</div></div>
+      <div class="row meal"><span class="t">6:00 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span>FlyteCo is closed Mondays, so Avery goes wherever the team lands for their dinner out. The crew of six, pick one: <strong>Lowry Beer Garden,</strong> 7577 E. Academy Blvd., open until 9, or the <strong>Cherry Cricket</strong> in Cherry Creek, open late. Avery stays at the Hyatt tonight as usual.</div></div>
+      <div class="row"><span class="t">8:30 PM</span><span class="dot"></span><div class="what">Early night for Grandma and Grandpa, their rental goes back at 7:00 AM.</div></div>
+    </div>
+  </article>
+
+  <!-- TUESDAY AUG 4 -->
+  <article class="day">
+    <div class="dayhead">
+      <span class="dname">Tuesday</span>
+      <span class="ddate">August 4</span>
+      <span class="dtag">Fly home</span>
+    </div>
+    <div class="rows">
+      <div class="row"><span class="t">7:00 AM</span><span class="dot"></span><div class="what"><strong>Grandma and Grandpa drop their Avis</strong> and fly Air Canada home to Victoria at 9:10.</div></div>
+      <div class="row"><span class="t">7:30 AM</span><span class="dot"></span><div class="what">The team loads for their earlier flight. You have the saner morning.</div></div>
+      <div class="row meal"><span class="t">7:45 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span>At the TownePlace, then pack the Pathfinder and check out.</div></div>
+      <div class="row"><span class="t">8:45 AM</span><span class="dot"></span><div class="what">Swing by the <strong>Hyatt Place</strong> for Avery and her gear.</div></div>
+      <div class="row travel"><span class="t">9:30 AM</span><span class="dot"></span><div class="what">Drive to Hertz.</div></div>
+      <div class="row"><span class="t">10:00 AM</span><span class="dot"></span><div class="what">Drop the car at <strong>Hertz,</strong> 24890 E. 78th Ave., then shuttle to the terminal. DEN security runs long in summer.</div></div>
+      <div class="row travel"><span class="t">11:40 AM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 751, DEN to LGA.</strong> Lands 5:30 PM EDT.</div></div>
+      <div class="row meal"><span class="t">5:45 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span>Four-hour layover at LGA. Sit-down dinner in Terminal C, no rush.</div></div>
+      <div class="row travel"><span class="t">9:29 PM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 5320, LGA to CHO.</strong> Lands 11:11 PM.</div></div>
+      <div class="row"><span class="t">11:30 PM</span><span class="dot"></span><div class="what">Home to Virginia. Long day, worth it.</div></div>
+    </div>
+  </article>
+
+  <section class="todo">
+    <h3>While Avery plays: options for the boys and grandparents, best to worst</h3>
+    <ul>
+      <li><strong>1. Meow Wolf Convergence Station,</strong> 20 minutes. Timed entry, book ahead. Saved for this crew, and built for exactly these ages.</li>
+      <li><strong>2. iFLY indoor skydiving, Lone Tree,</strong> 30 minutes. The boys fly, the grandparents watch from the couches. Book ahead.</li>
+      <li><strong>3. Boondocks Food and Fun,</strong> 25 minutes. Go-karts, mini golf and an arcade for a longer window.</li>
+      <li><strong>4. Wings Over the Rockies Air and Space Museum,</strong> 15 minutes. A hangar full of aircraft plus flight simulators.</li>
+      <li><strong>5. Denver Museum of Nature and Science,</strong> 20 minutes. Dinosaurs, space and an IMAX. The Denver Zoo sits in the same park.</li>
+      <li><strong>6. Water World, Federal Heights,</strong> 30 minutes. Top pick for the boys, the most work for the grandparents.</li>
+      <li><strong>7. Topgolf Centennial,</strong> 25 minutes. Covered bays, and Grandpa gets to swing too.</li>
+      <li><strong>8. Bass Pro Shops at Northfield,</strong> 10 minutes. Giant aquarium, arcade shooting gallery, free to wander. Movies and food are steps away.</li>
+      <li><strong>9. Rocky Mountain Arsenal National Wildlife Refuge,</strong> 15 minutes. Bison from the car, best in the morning. More the grandparents' speed than the boys'.</li>
+      <li><strong>10. Downtown Aquarium,</strong> 25 minutes. Easy two hours, air conditioned.</li>
+      <li><strong>11. Stanley Marketplace and the hotel pool</strong> for the short gaps between games.</li>
+      <li>Monday everyone is at the fields for the 11 a.m. final. No side trips on championship day.</li>
+    </ul>
+  </section>
+
+  <footer>
+    Altitude notes: Denver sits at 5,280 feet and Georgetown at 8,500. Push water all week, especially for Avery. Sunscreen goes farther up here than it does in Virginia.
+  </footer>
+
+</div>
+</body>
+</html>
