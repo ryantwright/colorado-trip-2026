@@ -180,6 +180,16 @@
     .todo{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     .row.game{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
+
+  .row.past .t,.row.past .what{opacity:.42}
+  .row.past .what{text-decoration:line-through;text-decoration-thickness:1px}
+  .row.past .dot{opacity:.3}
+  .day.done{opacity:.62}
+  .day.done .dayhead{border-bottom-color:var(--line)}
+  .dtoday{
+    margin-left:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;padding:2px 8px;
+  }
 </style>
 </head>
 <body>
@@ -226,7 +236,6 @@
       <span class="dtag">Travel day &middot; CHO to Fort Collins via Atlanta</span>
     </div>
     <div class="rows">
-      <div class="row rem"><span class="t">&mdash;</span><span class="dot"></span><div class="what"><span class="chip rem">To do</span>Set the temperature at the Camargo house for the cleaners before you walk out the door.</div></div>
       <div class="row"><span class="t">11:30 AM</span><span class="dot"></span><div class="what">Bags by the door. Last sweep for chargers, cleats, water bottles and Avery's disc bag.</div></div>
       <div class="row meal"><span class="t">12:00 PM</span><span class="dot"></span><div class="what"><span class="chip">Lunch</span>Eat at the house. The next real meal is dinner in Atlanta.</div></div>
       <div class="row travel"><span class="t">12:45 PM</span><span class="dot"></span><div class="what"><strong>Leave the house</strong> for <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Charlottesville+Albemarle+Airport%2C+100+Bowen+Loop%2C+Charlottesville%2C+VA">CHO</a>, about 20 minutes. Small airport, but five people and a pile of bags still take time to park and check in.</div></div>
@@ -383,6 +392,7 @@
       <span class="dtag">Fly home</span>
     </div>
     <div class="rows">
+      <div class="row rem"><span class="t">&mdash;</span><span class="dot"></span><div class="what"><span class="chip rem">To do</span>Set the temperature at the Camargo house for the cleaners first thing, before the airport run.</div></div>
       <div class="row"><span class="t">7:00 AM</span><span class="dot"></span><div class="what"><strong>Grandma and Grandpa drop their Avis</strong> and fly Air Canada home to Victoria at 9:10.</div></div>
       <div class="row meal"><span class="t">6:30 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span><strong>Liz eats first,</strong> she is on van duty. Everyone else follows at 7:45.</div></div>
       <div class="row travel"><span class="t">7:15 AM</span><span class="dot"></span><div class="what"><strong>Liz to the <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hyatt+Place+Denver+Airport%2C+16250+E+40th+Ave%2C+Aurora%2C+CO">Hyatt Place</a></strong> to take her van and load players and gear. Five minutes from the hotel.</div></div>
@@ -421,5 +431,56 @@
   </footer>
 
 </div>
+<script>
+(function(){
+  var M={January:0,February:1,March:2,April:3,May:4,June:5,July:6,
+         August:7,September:8,October:9,November:10,December:11},YEAR=2026;
+  function dayDate(a){
+    var e=a.querySelector('.ddate'); if(!e) return null;
+    var m=e.textContent.trim().match(/([A-Za-z]+)\s+(\d+)/); if(!m) return null;
+    return new Date(YEAR,M[m[1]],parseInt(m[2],10));
+  }
+  function rowTime(r,base){
+    var e=r.querySelector('.t'); if(!e) return null;
+    var m=e.textContent.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i); if(!m) return null;
+    var h=parseInt(m[1],10)%12; if(/pm/i.test(m[3])) h+=12;
+    var d=new Date(base.getTime()); d.setHours(h,parseInt(m[2],10),0,0); return d;
+  }
+  function mark(){
+    var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    var days=[].slice.call(document.querySelectorAll('article.day'));
+    if(!days.length) return;
+    var rest=[],past=[];
+    days.forEach(function(a){
+      var d=dayDate(a);
+      [].forEach.call(a.querySelectorAll('.row'),function(r){r.classList.remove('past');});
+      a.classList.remove('done','today');
+      var badge=a.querySelector('.dtoday'); if(badge) badge.parentNode.removeChild(badge);
+      if(d && d<today){
+        past.push(a); a.classList.add('done');
+        [].forEach.call(a.querySelectorAll('.row'),function(r){r.classList.add('past');});
+      }else{
+        rest.push(a);
+        if(d && d.getTime()===today.getTime()){
+          a.classList.add('today');
+          var head=a.querySelector('.dayhead'), tag=head&&head.querySelector('.dtag');
+          if(head){var b=document.createElement('span');b.className='dtoday';b.textContent='Today';
+                   tag?head.insertBefore(b,tag):head.appendChild(b);}
+          [].forEach.call(a.querySelectorAll('.row'),function(r){
+            var t=rowTime(r,d); if(t&&t<now) r.classList.add('past');
+          });
+        }
+      }
+    });
+    var parent=days[0].parentNode, marker=document.createComment('order');
+    parent.insertBefore(marker,days[0]);
+    rest.concat(past).forEach(function(a){parent.insertBefore(a,marker);});
+    parent.removeChild(marker);
+  }
+  mark();
+  setInterval(mark,60000);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden) mark();});
+})();
+</script>
 </body>
 </html>
