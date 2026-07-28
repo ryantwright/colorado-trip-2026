@@ -58,6 +58,11 @@
   .fact p{font-size:14px}
   .fact strong{font-weight:700}
   a.map{color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:2px;text-underline-offset:3px}
+  a.status{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--blue);color:var(--blue);
+    text-decoration:none;padding:1px 6px;margin-left:6px;white-space:nowrap;vertical-align:1px;
+  }
 
   /* Checklist */
   .todo{background:var(--blue);color:#F2F5F9;padding:16px 18px;margin:12px 0 36px}
@@ -180,10 +185,10 @@
     <ul>
       <li>Georgetown Loop is set: 11:25 out, back at 2:15. Check in by 10:45 at Devil's Gate Station.</li>
       <li>Wednesday burgers: Grandma and Grandpa pick the spot and bring them to Marcy's.</li>
-      <li>Cancel the Blue Agave table for Thursday, (970) 631-8076 or the confirmation link.</li>
       <li>Buy Meow Wolf timed tickets for the grandparents and boys' outing.</li>
       <li>Pay the tournament spectator fee online.</li>
-      <li>Casa Bonita is sold out but keeps releasing cancellations. Keep refreshing for July 31 to August 3. A landed table bumps that meal.</li>
+      <li>Casa Bonita landed: Sunday 12:45, table for 6 under Ryan Wright. Kenny and Marcy captain the crew.</li>
+      <li>Liz: confirm the Tuesday van assignment with the team manager, which players ride with her and where the van goes after departures.</li>
       <li>Confirm the Friday colleague lunch in Boulder, 11:15 to 1:15.</li>
       <li>After the Hertz pickup, register the rental's plate for CSU's free visitor parking permit. Link is in the CSU email.</li>
     </ul>
@@ -195,7 +200,7 @@
       <li><strong>Monday, July 27.</strong> AC 8158 out of Victoria at 2:55, through Vancouver, AC 578 lands Denver at 11:12 PM. Avis pickup at 11:30, night at the City Express by Marriott Denver Airport, <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=City+Express+by+Marriott+Denver+Airport%2C+6670+Yampa+St%2C+Denver%2C+CO">6670 Yampa St</a>.</li>
       <li><strong>Tuesday.</strong> Check out by 11, drive up to Marcy's in Wellington. They stay there through Thursday night.</li>
       <li><strong>Friday.</strong> Check in at the TownePlace Suites at Gateway Park with you, 3:00 PM. Second room on your reservation, their own car all week.</li>
-      <li><strong>Tuesday, August 4.</strong> Avis back at 7:00 AM, AC 575 to Vancouver at 9:10, home in Victoria by 5:06 PM.</li>
+      <li><strong>Tuesday, August 4.</strong> Avis back at 7:00 AM, AC 575 to Vancouver at 9:10, home in Victoria by 5:06 PM.<a class="status" href="https://www.flightstats.com/v2/flight-tracker/AC/575?year=2026&amp;month=8&amp;date=4">On time?</a></li>
     </ul>
   </section>
 
@@ -204,16 +209,18 @@
     <div class="dayhead">
       <span class="dname">Tuesday</span>
       <span class="ddate">July 28</span>
-      <span class="dtag">Travel day &middot; CHO to Fort Collins</span>
+      <span class="dtag">Travel day &middot; CHO to Fort Collins via Atlanta</span>
     </div>
     <div class="rows">
-      <div class="row"><span class="t">12:45 PM</span><span class="dot"></span><div class="what">Leave for CHO. Small airport, but give yourselves room to park.</div></div>
-      <div class="row travel"><span class="t">2:32 PM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 5391, CHO to LGA.</strong> Gate 4. Lands 4:07 PM.</div></div>
-      <div class="row meal"><span class="t">4:30 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span>Eat a real dinner at LGA during the 2:43 layover. Terminal C has plenty of options. This is tonight's meal.</div></div>
-      <div class="row travel"><span class="t">6:50 PM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 710, LGA to DEN.</strong> Terminal C, Gate 68. Lands 9:35 PM MDT.</div></div>
-      <div class="row"><span class="t">9:50 PM</span><span class="dot"></span><div class="what"><strong>Hertz,</strong> <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hertz+Car+Rental%2C+24890+E+78th+Ave%2C+Denver%2C+CO">24890 E. 78th Ave.</a> Nissan Pathfinder or similar, the 7-seater.</div></div>
-      <div class="row"><span class="t">10:30 PM</span><span class="dot"></span><div class="what">Drive north to Fort Collins on E-470 and I-25. About 70 minutes.</div></div>
-      <div class="row"><span class="t">11:45 PM</span><span class="dot"></span><div class="what">Check in at the <strong>Residence Inn,</strong> <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Residence+Inn+Fort+Collins+South%2C+1127+Oakridge+Dr%2C+Fort+Collins%2C+CO">1127 Oakridge Drive</a>. Both rooms are under your name, everyone under one roof tonight. Straight to bed, tomorrow is the train.</div></div>
+      <div class="row"><span class="t">11:30 AM</span><span class="dot"></span><div class="what">Bags by the door. Last sweep for chargers, cleats, water bottles and Avery's disc bag.</div></div>
+      <div class="row meal"><span class="t">12:00 PM</span><span class="dot"></span><div class="what"><span class="chip">Lunch</span>Eat at the house. The next real meal is dinner in Atlanta.</div></div>
+      <div class="row travel"><span class="t">12:45 PM</span><span class="dot"></span><div class="what"><strong>Leave the house</strong> for <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Charlottesville+Albemarle+Airport%2C+100+Bowen+Loop%2C+Charlottesville%2C+VA">CHO</a>, about 20 minutes. Small airport, but five people and a pile of bags still take time to park and check in.</div></div>
+      <div class="row travel"><span class="t">2:40 PM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 5434, CHO to ATL.</strong> Gate 3. Lands 4:30 PM, Concourse D.<a class="status" href="https://www.flightstats.com/v2/flight-tracker/DL/5434?year=2026&amp;month=7&amp;date=28">On time?</a></div></div>
+      <div class="row meal"><span class="t">5:00 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span>Eat a real dinner in Atlanta during the layover, just under three hours. Ride the Plane Train from D toward the departure concourse and eat there. This is tonight's meal.</div></div>
+      <div class="row travel"><span class="t">7:25 PM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 746, ATL to DEN.</strong> Lands 8:43 PM MDT.<a class="status" href="https://www.flightstats.com/v2/flight-tracker/DL/746?year=2026&amp;month=7&amp;date=28">On time?</a></div></div>
+      <div class="row"><span class="t">9:15 PM</span><span class="dot"></span><div class="what"><strong>Hertz,</strong> <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hertz+Car+Rental%2C+24890+E+78th+Ave%2C+Denver%2C+CO">24890 E. 78th Ave.</a> Nissan Pathfinder or similar, the 7-seater. Pickup is booked for 9:30, and arriving early is fine.</div></div>
+      <div class="row"><span class="t">10:00 PM</span><span class="dot"></span><div class="what">Drive north to Fort Collins on E-470 and I-25. About 70 minutes.</div></div>
+      <div class="row"><span class="t">11:15 PM</span><span class="dot"></span><div class="what">Check in at the <strong>Residence Inn,</strong> <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Residence+Inn+Fort+Collins+South%2C+1127+Oakridge+Dr%2C+Fort+Collins%2C+CO">1127 Oakridge Drive</a>. Both rooms are under your name, everyone under one roof tonight. Straight to bed, tomorrow is the train.</div></div>
     </div>
   </article>
 
@@ -309,10 +316,11 @@
     <div class="rows">
       <div class="row meal"><span class="t">6:45 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span>Avery's team breakfast at the Hyatt. The rest of you, hit the early spread at the TownePlace.</div></div>
       <div class="row travel"><span class="t">7:15 AM</span><span class="dot"></span><div class="what">Team cars load for the fields. Family rolls out by 7:50.</div></div>
-      <div class="row"><span class="t">&mdash;</span><span class="dot"></span><div class="what"><strong>Aunt Marcy drives down</strong> to watch today. Have her meet you at <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Aurora+Sports+Park%2C+19300+E+Colfax+Ave%2C+Aurora%2C+CO">Aurora Sports Park</a>.</div></div>
+      <div class="row"><span class="t">&mdash;</span><span class="dot"></span><div class="what"><strong>Aunt Marcy and Kenny drive down</strong> for the morning games at <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Aurora+Sports+Park%2C+19300+E+Colfax+Ave%2C+Aurora%2C+CO">Aurora Sports Park</a>, then captain the Casa Bonita run.</div></div>
       <div class="row game"><span class="t">8:30 AM</span><span class="dot"></span><div class="what"><strong>Crossover / play-in game.</strong></div></div>
       <div class="row game"><span class="t">10:45 AM</span><span class="dot"></span><div class="what"><strong>Bracket game.</strong></div></div>
-      <div class="row meal"><span class="t">12:15 PM</span><span class="dot"></span><div class="what"><span class="chip">Lunch</span>Liz and Ryan at the fields, Avery is covered by the parent crew. The grandparents and boys eat wherever the morning took them.</div></div>
+      <div class="row"><span class="t">12:00 PM</span><span class="dot"></span><div class="what">The Casa Bonita crew rolls: <strong>Kenny, Marcy, Grandma, Grandpa and the boys</strong> head for Lakewood, about 40 minutes.</div></div>
+      <div class="row meal"><span class="t">12:45 PM</span><span class="dot"></span><div class="what"><span class="chip">Lunch</span><strong><a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Casa+Bonita%2C+6715+W+Colfax+Ave%2C+Lakewood%2C+CO">Casa Bonita.</a></strong> Reserved, table for 6 under Ryan Wright, standard seating. Cliff divers, Black Bart's Cave, raise the sopapilla flag. Back to Aurora by 3:30 for the late semi window. Liz and Ryan eat at the fields, Avery is covered by the team.</div></div>
       <div class="row game"><span class="t">1:30 PM</span><span class="dot"></span><div class="what"><strong>Semifinal,</strong> first window, if they win through. Second window is 3:45.</div></div>
       <div class="row"><span class="t">&mdash;</span><span class="dot"></span><div class="what">Between games, catch US Open club action at Aurora. Vanguard stays here, only Vortex plays at Dick's today.</div></div>
       <div class="row meal"><span class="t">6:00 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span>Avery eats at the Hyatt with the team, then team meeting. The crew of six: <strong><a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=FlyteCo+Tower%2C+Denver%2C+CO">FlyteCo Tower,</a></strong> the old Stapleton control tower, ten minutes. Burgers, mini golf and duckpin for the boys.</div></div>
@@ -348,14 +356,16 @@
     </div>
     <div class="rows">
       <div class="row"><span class="t">7:00 AM</span><span class="dot"></span><div class="what"><strong>Grandma and Grandpa drop their Avis</strong> and fly Air Canada home to Victoria at 9:10.</div></div>
-      <div class="row"><span class="t">7:30 AM</span><span class="dot"></span><div class="what">The team loads for their earlier flight. You have the saner morning.</div></div>
-      <div class="row meal"><span class="t">7:45 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span>At the TownePlace, then pack the Pathfinder and check out.</div></div>
-      <div class="row"><span class="t">8:45 AM</span><span class="dot"></span><div class="what">Swing by the <strong><a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hyatt+Place+Denver+Airport%2C+16250+E+40th+Ave%2C+Aurora%2C+CO">Hyatt Place</a></strong> for Avery and her gear.</div></div>
-      <div class="row travel"><span class="t">9:30 AM</span><span class="dot"></span><div class="what">Drive to Hertz.</div></div>
-      <div class="row"><span class="t">10:00 AM</span><span class="dot"></span><div class="what">Drop the car at <strong>Hertz,</strong> <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hertz+Car+Rental%2C+24890+E+78th+Ave%2C+Denver%2C+CO">24890 E. 78th Ave.</a>, then shuttle to the terminal. DEN security runs long in summer.</div></div>
-      <div class="row travel"><span class="t">11:40 AM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 751, DEN to LGA.</strong> Lands 5:30 PM EDT.</div></div>
+      <div class="row meal"><span class="t">6:30 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span><strong>Liz eats first,</strong> she is on van duty. Everyone else follows at 7:45.</div></div>
+      <div class="row travel"><span class="t">7:15 AM</span><span class="dot"></span><div class="what"><strong>Liz to the <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hyatt+Place+Denver+Airport%2C+16250+E+40th+Ave%2C+Aurora%2C+CO">Hyatt Place</a></strong> to take her van and load players and gear. Five minutes from the hotel.</div></div>
+      <div class="row travel"><span class="t">7:30 AM</span><span class="dot"></span><div class="what"><strong>Team vans roll for DEN. Liz drives one.</strong> Players and bags to departures, then the van goes back or the keys hand off, whichever the team decided. She clears security on her own and meets everyone at the gate.</div></div>
+      <div class="row meal"><span class="t">7:45 AM</span><span class="dot"></span><div class="what"><span class="chip">Breakfast</span><strong>Ryan and the boys</strong> at the TownePlace, then pack the Pathfinder and check out.</div></div>
+      <div class="row"><span class="t">8:45 AM</span><span class="dot"></span><div class="what">Ryan swings by the <strong><a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hyatt+Place+Denver+Airport%2C+16250+E+40th+Ave%2C+Aurora%2C+CO">Hyatt Place</a></strong> for Avery and her gear. She flies home with you, not the team.</div></div>
+      <div class="row travel"><span class="t">9:25 AM</span><span class="dot"></span><div class="what"><strong>Leave for the airport.</strong> Ryan, Avery and the boys, about 20 minutes to the rental center.</div></div>
+      <div class="row"><span class="t">10:00 AM</span><span class="dot"></span><div class="what">Drop the car at <strong>Hertz,</strong> <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hertz+Car+Rental%2C+24890+E+78th+Ave%2C+Denver%2C+CO">24890 E. 78th Ave.</a>, then shuttle to the terminal. DEN security runs long in summer, so this is the tight seam of the day. Bags checked by 10:40.</div></div>
+      <div class="row travel"><span class="t">11:40 AM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 751, DEN to LGA.</strong> Lands 5:30 PM EDT.<a class="status" href="https://www.flightstats.com/v2/flight-tracker/DL/751?year=2026&amp;month=8&amp;date=4">On time?</a></div></div>
       <div class="row meal"><span class="t">5:45 PM</span><span class="dot"></span><div class="what"><span class="chip">Dinner</span>Four-hour layover at LGA. Sit-down dinner in Terminal C, no rush.</div></div>
-      <div class="row travel"><span class="t">9:29 PM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 5320, LGA to CHO.</strong> Lands 11:11 PM.</div></div>
+      <div class="row travel"><span class="t">9:29 PM</span><span class="dot"></span><div class="what"><span class="chip fly">Fly</span><strong>DL 5320, LGA to CHO.</strong> Lands 11:11 PM.<a class="status" href="https://www.flightstats.com/v2/flight-tracker/DL/5320?year=2026&amp;month=8&amp;date=4">On time?</a></div></div>
       <div class="row"><span class="t">11:30 PM</span><span class="dot"></span><div class="what">Home to Virginia. Long day, worth it.</div></div>
     </div>
   </article>
