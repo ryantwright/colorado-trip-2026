@@ -190,6 +190,8 @@
     margin-left:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;
     letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;padding:2px 8px;
   }
+  .todo li.past{opacity:.45;text-decoration:line-through;text-decoration-thickness:1px}
+  .todo li.past::before{background:var(--gold)}
 </style>
 </head>
 <body>
@@ -221,10 +223,10 @@
   <section class="todo">
     <h3>Grandma and Grandpa's track, in from Victoria, B.C.</h3>
     <ul>
-      <li><strong>Monday, July 27.</strong> AC 8158 out of Victoria at 2:55, through Vancouver, AC 578 lands Denver at 11:12 PM. Avis pickup at 11:30, night at the City Express by Marriott Denver Airport, <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=City+Express+by+Marriott+Denver+Airport%2C+6670+Yampa+St%2C+Denver%2C+CO">6670 Yampa St</a>.</li>
-      <li><strong>Tuesday.</strong> Check out by 11, drive up to Marcy's in Wellington. They stay there through Thursday night.</li>
-      <li><strong>Friday.</strong> Check in at the TownePlace Suites at Gateway Park with you, 3:00 PM. Second room on your reservation, their own car all week.</li>
-      <li><strong>Tuesday, August 4.</strong> Avis back at 7:00 AM, AC 575 to Vancouver at 9:10, home in Victoria by 5:06 PM.<a class="status" href="https://www.flightstats.com/v2/flight-tracker/AC/575?year=2026&amp;month=8&amp;date=4">On time?</a></li>
+      <li data-until="2026-07-27"><strong>Monday, July 27.</strong> AC 8158 out of Victoria at 2:55, through Vancouver, AC 578 lands Denver at 11:12 PM. Avis pickup at 11:30, night at the City Express by Marriott Denver Airport, <a class="map" href="https://www.google.com/maps/dir/?api=1&amp;destination=City+Express+by+Marriott+Denver+Airport%2C+6670+Yampa+St%2C+Denver%2C+CO">6670 Yampa St</a>.</li>
+      <li data-until="2026-07-30"><strong>Tuesday.</strong> Check out by 11, drive up to Marcy's in Wellington. They stay there through Thursday night.</li>
+      <li data-until="2026-07-31"><strong>Friday.</strong> Check in at the TownePlace Suites at Gateway Park with you, 3:00 PM. Second room on your reservation, their own car all week.</li>
+      <li data-until="2026-08-04"><strong>Tuesday, August 4.</strong> Avis back at 7:00 AM, AC 575 to Vancouver at 9:10, home in Victoria by 5:06 PM.<a class="status" href="https://www.flightstats.com/v2/flight-tracker/AC/575?year=2026&amp;month=8&amp;date=4">On time?</a></li>
     </ul>
   </section>
 
@@ -471,6 +473,11 @@
           });
         }
       }
+    });
+    [].forEach.call(document.querySelectorAll('li[data-until]'),function(li){
+      var p=li.getAttribute('data-until').split('-');
+      var d=new Date(+p[0],+p[1]-1,+p[2]);
+      if(d<today){li.classList.add('past');}else{li.classList.remove('past');}
     });
     var parent=days[0].parentNode, marker=document.createComment('order');
     parent.insertBefore(marker,days[0]);
