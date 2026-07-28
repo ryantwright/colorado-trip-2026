@@ -192,6 +192,11 @@
   }
   .todo li.past{opacity:.45;text-decoration:line-through;text-decoration-thickness:1px}
   .todo li.past::before{background:var(--gold)}
+  .dayhead{cursor:pointer;-webkit-user-select:none;user-select:none}
+  .dayhead:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .day.collapsed .rows{display:none}
+  .dchev{display:inline-block;margin-left:10px;color:var(--muted);font-size:15px;line-height:1;transition:transform .15s ease}
+  .day.collapsed .dchev{transform:rotate(-90deg)}
 </style>
 </head>
 <body>
@@ -483,7 +488,39 @@
     parent.insertBefore(marker,days[0]);
     rest.concat(past).forEach(function(a){parent.insertBefore(a,marker);});
     parent.removeChild(marker);
+    days.forEach(function(a){
+      if(!a.dataset.uToggle){
+        if(a.classList.contains('done')){a.classList.add('collapsed');}
+        else{a.classList.remove('collapsed');}
+      }
+      var h=a.querySelector('.dayhead');
+      if(h) h.setAttribute('aria-expanded', a.classList.contains('collapsed')?'false':'true');
+    });
   }
+  function initCollapse(){
+    [].forEach.call(document.querySelectorAll('article.day'),function(a){
+      var h=a.querySelector('.dayhead');
+      if(!h||h.getAttribute('data-init')) return;
+      h.setAttribute('data-init','1');
+      h.setAttribute('role','button');
+      h.setAttribute('tabindex','0');
+      var c=document.createElement('span');
+      c.className='dchev'; c.textContent='\u25be';
+      var n=h.querySelector('.dname');
+      if(n&&n.parentNode){n.parentNode.insertBefore(c,n.nextSibling);}else{h.appendChild(c);}
+      function toggle(){
+        a.setAttribute('data-u-toggle','1');
+        a.dataset.uToggle='1';
+        a.classList.toggle('collapsed');
+        h.setAttribute('aria-expanded', a.classList.contains('collapsed')?'false':'true');
+      }
+      h.addEventListener('click',toggle);
+      h.addEventListener('keydown',function(e){
+        if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'){e.preventDefault();toggle();}
+      });
+    });
+  }
+  initCollapse();
   mark();
   setInterval(mark,60000);
   document.addEventListener('visibilitychange',function(){if(!document.hidden) mark();});
